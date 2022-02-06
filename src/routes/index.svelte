@@ -9,6 +9,10 @@
         : $cards;
 </script>
 
+<svelte:head>
+    <title>WhatToEat</title>
+</svelte:head>
+
 {#if $cards?.length}
     <label for="search_input">Search icon</label>
     <input

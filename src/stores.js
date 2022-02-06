@@ -1,8 +1,10 @@
 import { writable } from 'svelte/store';
 
+export let globalPopup = writable(null);
+
 export let cards = writable([
     {
-        title: 'Food Example One',
+        title: 'Pizza',
         pic: 'vatican.jpg',
         id: 'dsfkhsdjfhdsjjfjghfkfdsjkf',
         ingredients: ['celery', 'bread', 'milk', 'cheese', 'apples'],
@@ -15,7 +17,7 @@ export let cards = writable([
         ],
     },
     {
-        title: 'Food Example One',
+        title: 'Grapefruit cassarole',
         pic: 'vatican.jpg',
         id: 'dsfkhsdsdfsdfsdjfhdsgjkfdsjkf',
         ingredients: ['celery', 'bread', 'milk', 'cheese', 'apples'],
@@ -28,7 +30,7 @@ export let cards = writable([
         ],
     },
     {
-        title: 'Food Example One',
+        title: 'Pie',
         pic: 'vatican.jpg',
         id: 'dsfkhsdjfhdssdfsdjkfdsjkf',
         ingredients: ['celery', 'bread', 'milk', 'cheese', 'apples'],
@@ -41,9 +43,9 @@ export let cards = writable([
         ],
     },
     {
-        title: 'Food Example One',
+        title: 'Lemon suitcases',
         pic: 'vatican.jpg',
-        id: 'dsfkhsdjfhdssdfsdjkfdsjkf',
+        id: 'dsfkhsdjfhdssdsdfsdfsdfsdfsdjkfdsjkf',
         ingredients: ['celery', 'bread', 'milk', 'cheese', 'apples'],
         steps: [
             'mix',

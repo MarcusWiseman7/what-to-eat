@@ -9,6 +9,7 @@
         ? 'bg-slate-300 hover:bg-slate-400 active:bg-slate-500 text-slate-900'
         : 'bg-violet-500 hover:bg-violet-600 active:bg-violet-700 text-white'}
     rounded-lg font-semibold text-xl px-20 py-2"
+    on:click
 >
     <slot />
 </button>

@@ -1,23 +1,11 @@
 <script>
     import '../app.css';
-    import EatPopup from '../components/popup.svelte';
-    import EatButton from '../components/button.svelte';
-    import AppMessage from '../components/message.svelte';
+    import AppPopup from '../components/popup.svelte';
+    import AppButton from '../components/button.svelte';
+    import { globalPopup } from '../stores';
 
-    const pageTitle = 'test';
     const year = new Date().getFullYear();
-
-    let globalPopup = null;
-    let appMessage = null;
-
-    const closePopup = () => {
-        globalPopup = null;
-    };
 </script>
-
-<svelte:head>
-    <title>{pageTitle}</title>
-</svelte:head>
 
 <div
     class="pt-20 bg-slate-500 text-white min-h-screen w-screen flex flex-col items-center justify-between overflow-x-hidden"
@@ -44,22 +32,15 @@
 </div>
 
 <!-- Global popup -->
-{#if globalPopup}
-    <EatPopup on:close={closePopup}>
-        <div slot="header">This is my header</div>
-        <div slot="content">
-            Body dskjf kjsklfj ksjdfkjdskf jslkjfdslkjf lksjflkdsj lkfdsjlkj dskfdsjf lkjdsflkj lkjfdslkjf kjdsflk jsd
-        </div>
+{#if $globalPopup}
+    <AppPopup on:close={$globalPopup.onClose}>
+        <div slot="header">{$globalPopup.title}</div>
+        <div slot="content">{$globalPopup.content}</div>
         <div slot="actions">
             <div class="flex gap-4">
-                <EatButton type="info">Cancel</EatButton>
-                <EatButton>Click me!</EatButton>
+                <AppButton type="info" on:click={$globalPopup.onSecondaryBtn}>{$globalPopup.secondaryBtn}</AppButton>
+                <AppButton on:click={$globalPopup.onPrimaryBtn}>{$globalPopup.primaryBtn}</AppButton>
             </div>
         </div>
-    </EatPopup>
-{/if}
-
-<!-- App message -->
-{#if appMessage}
-    <AppMessage />
+    </AppPopup>
 {/if}
