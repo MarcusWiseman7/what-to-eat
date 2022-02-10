@@ -14,14 +14,18 @@
 </svelte:head>
 
 {#if $cards?.length}
-    <label for="search_input">Search icon</label>
-    <input
-        type="text"
-        id="search_input"
-        placeholder="Search"
-        bind:value={search}
-        class="text-violet-900 font-semibold text-xl bg-violet-200 rounded-md mt-6"
-    />
+    <div class="flex items-center">
+        <label for="search_input" class="mr-3 pt-5 w-5">
+            <img src="icons/search.svg" alt="Search" />
+        </label>
+        <input
+            type="text"
+            id="search_input"
+            placeholder="Search"
+            bind:value={search}
+            class="text-violet-900 font-semibold text-xl bg-violet-200 rounded-md mt-6"
+        />
+    </div>
 {/if}
 
 {#if filteredCards?.length}

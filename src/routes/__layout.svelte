@@ -2,23 +2,22 @@
     import '../app.css';
     import AppPopup from '../components/popup.svelte';
     import AppButton from '../components/button.svelte';
-    import { globalPopup } from '../stores';
+    import { btnClass, globalPopup } from '../stores';
 
     const year = new Date().getFullYear();
 </script>
 
 <div
-    class="pt-20 bg-slate-500 text-white min-h-screen w-screen flex flex-col items-center justify-between overflow-x-hidden"
+    class="pt-20 bg-slate-500 text-white min-h-screen w-screen flex flex-col items-center justify-between overflow-x-hidden select-none"
 >
     <header
         class="fixed left-0 top-0 right-0 z-10 flex items-center justify-between px-4 lg:px-10 h-20 mb-6 shadow-lg bg-slate-800"
     >
         <a href="/" class="font-semibold text-4xl cursor-pointer">What to Eat</a>
-        <a
-            href="/card"
-            class="rounded-lg font-semibold text-xl px-3 lg:px-8 py-2 bg-violet-500 hover:bg-violet-600 active:bg-violet-700"
-            >+ New Card</a
-        >
+        <a href="/card" class={$btnClass}>
+            <img src="icons/add.svg" alt="Add" />
+            <span>New Card</span>
+        </a>
     </header>
 
     <!-- PAGES -->

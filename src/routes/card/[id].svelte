@@ -29,7 +29,7 @@
             {/if}
         </div>
 
-        <img src={'../images/' + pic} alt={title} class="w-full" />
+        <img src={'../images/' + pic} alt={title} class="w-full rounded-lg shadow-lg" />
     </div>
 
     <!-- Desktop ingredients -->

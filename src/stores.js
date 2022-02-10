@@ -1,5 +1,8 @@
-import { writable } from 'svelte/store';
+import { readable, writable } from 'svelte/store';
 
+export const btnClass = readable(
+    'rounded-lg font-semibold text-xl px-3 lg:px-8 py-2 bg-violet-500 hover:bg-violet-600 active:bg-violet-700 flex justify-center items-center cursor-pointer'
+);
 export let globalPopup = writable(null);
 
 export let cards = writable([
