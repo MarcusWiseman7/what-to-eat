@@ -48,28 +48,32 @@
 <h1 class="text-3xl font-semibold mb-3">Add new card</h1>
 
 <div class="border rounded-lg shadow-xl p-6">
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
         <label for="title" class="text-right text-2xl font-semibold">Recipe name</label>
         <input type="text" bind:value={recipe.title} class="bg-violet-400 rounded-lg" />
 
-        {#if !actImage}
-            <label for="file-upload-input" class={$btnClass}>
-                <img src="icons/camera.svg" alt="Camera" />
-                <span class="ml-2">Take Picture</span>
-            </label>
-        {:else}
-            <div class="flex gap-4 w-full">
-                <label for="file-upload-input">
-                    <img src={actImage} alt="Uploaded pic" class="rounded-lg max-h-10 cursor-pointer" />
+        <div class="col-span-2 lg:col-span-1">
+            {#if !actImage}
+                <label for="file-upload-input" class={$btnClass}>
+                    <img src="icons/camera.svg" alt="Camera" />
+                    <span class="ml-2">Picture</span>
                 </label>
-                <button class={$btnClass} on:click={deleteUpload}>Delete</button>
-            </div>
-        {/if}
+            {:else}
+                <div class="flex gap-4 w-full">
+                    <label for="file-upload-input">
+                        <img src={actImage} alt="Uploaded pic" class="rounded-lg max-h-10 cursor-pointer" />
+                    </label>
+                    <button class={$btnClass} on:click={deleteUpload}>Delete</button>
+                </div>
+            {/if}
+        </div>
         <input class="hidden" type="file" id="file-upload-input" accept="image/*" on:change={processFile} />
     </div>
 
-    <h3 class="grid grid-cols-3 mt-6 mb-1"><span class="text-2xl text-right mr-3 font-semibold">Ingredients</span></h3>
-    <div class="grid grid-cols-3 gap-4">
+    <h3 class="grid grid-cols-2 lg:grid-cols-3 mt-6 mb-1">
+        <span class="text-2xl text-right mr-3 font-semibold">Ingredients</span>
+    </h3>
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {#each recipe.ingredients as ingredient, i}
             <label for="ingredients-{i}" class="text-right">Ingredient {i + 1}</label>
             <input
@@ -79,11 +83,13 @@
                 on:input={checkInputs}
                 class="bg-violet-400 rounded-lg"
             />
-            <span />
+            <span class="hidden lg:block" />
         {/each}
     </div>
 
-    <h3 class="grid grid-cols-3 mt-6 mb-1"><span class="text-2xl text-right mr-3 font-semibold">Instructions</span></h3>
+    <h3 class="grid grid-cols-2 lg:grid-cols-3 mt-6 mb-1">
+        <span class="text-2xl text-right mr-3 font-semibold">Instructions</span>
+    </h3>
     <div class="grid grid-cols-3 gap-4">
         {#each recipe.steps as step, i}
             <label for="steps-{i}" class="text-right">Step {i + 1}</label>
@@ -98,7 +104,7 @@
         {/each}
     </div>
 
-    <div class="grid grid-cols-3 mt-8">
+    <div class="grid lg:grid-cols-3 mt-8">
         <span />
         <button class={$btnClass} on:click={submitCard}>
             <img src="icons/add.svg" alt="Add" />
