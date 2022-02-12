@@ -7,6 +7,9 @@
     "package": "svelte-kit package",
     "preview": "svelte-kit preview"
   },
+  "dependencies": {
+    "mongoose": "^6.2.1"
+  },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",

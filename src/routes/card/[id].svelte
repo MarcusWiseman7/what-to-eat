@@ -1,9 +1,11 @@
 <script>
-    import { page } from '$app/stores';
-    import { cards } from '../../stores';
+    // import { page } from '$app/stores';
+    // import { cards } from '../../stores';
 
-    const { id } = $page.params;
-    const { title, ingredients, pic, steps } = $cards.find((c) => c.id === id) || {};
+    // const { id } = $page.params;
+    // const { title, ingredients, pic, steps } = $cards.find((c) => c.id === id) || {};
+    export let card;
+    const { id, title, ingredients, pic, steps } = card;
 </script>
 
 <svelte:head>

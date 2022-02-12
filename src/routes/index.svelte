@@ -1,5 +1,7 @@
 <script>
     import { cards } from '../stores';
+    import searchSrc from '$lib/assets/icons/search.svg';
+    import cardPic from '$lib/assets/images/v.jpg';
     let search = '';
 
     $: filteredCards = search
@@ -16,7 +18,7 @@
 {#if $cards?.length}
     <div class="flex items-center">
         <label for="search_input" class="mr-3 pt-5 w-5">
-            <img src="icons/search.svg" alt="Search" />
+            <img src={searchSrc} alt="Search" />
         </label>
         <input
             type="text"
@@ -36,11 +38,7 @@
                 class="h-60 lg:h-80 w-full rounded-md bg-violet-200 hover:ring-4 hover:ring-violet-500"
             >
                 <h3 class="text-2xl font-semibold h-16 flex items-center pl-3 text-violet-900">{card.title}</h3>
-                <img
-                    src={'images/' + card.pic}
-                    alt={card.title}
-                    class="w-full h-48 lg:h-64 object-cover rounded-b-md"
-                />
+                <img src={cardPic} alt={card.title} class="w-full h-48 lg:h-64 object-cover rounded-b-md" />
             </a>
         {/each}
     </div>
@@ -50,7 +48,7 @@
 {:else}
     <h3 class="text-2xl font-semibold mt-4 mb-6">No recipe cards found, please add some to your book</h3>
     <a
-        href="/card"
+        href="/card/new"
         class="rounded-lg font-semibold text-xl px-3 lg:px-8 py-2 bg-violet-500 hover:bg-violet-600 active:bg-violet-700"
         >+ New Card</a
     >

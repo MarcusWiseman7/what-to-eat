@@ -1,14 +1,19 @@
 <script>
     import { btnClass } from '../../stores';
+    import addSrc from '$lib/assets/icons/add.svg';
+    import cameraSrc from '$lib/assets/icons/camera.svg';
+    import AppLoading from '$lib/components/loading.svelte';
 
     $: recipe = {
         title: '',
         ingredients: [''],
         steps: [''],
+        pic: {},
     };
 
     let uploadedFile = null;
     let actImage = null;
+    let loading = false;
 
     const checkInputs = (event) => {
         const id = event.target.id;
@@ -38,7 +43,45 @@
         window.URL.revokeObjectURL(uploadedFile);
     };
 
-    const submitCard = () => {};
+    const uploadImageToCloudinary = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('file', uploadedFile);
+            formData.append('upload_preset', 'gkjgxssn');
+
+            const { public_id, secure_url } = await fetch('https://api.cloudinary.com/v1_1/dqrpaoopz/image/upload', {
+                method: 'POST',
+                body: formData,
+            }).then((response) => response.json());
+
+            return { public_id, secure_url };
+        } catch (err) {
+            console.warn(err);
+        }
+    };
+
+    const submitCard = async () => {
+        try {
+            loading = true;
+
+            // upload image file to cloudinary
+            if (uploadedFile) {
+                recipe.pic = await uploadImageToCloudinary();
+                deleteUpload();
+            }
+
+            // POST recipe to BE
+            // const card = fetch('/new', {
+            //     method: 'POST',
+            //     body: JSON.stringify(recipe),
+            //     headers: { 'content-type': 'application/json' },
+            // }).then((resp) => resp.json());
+        } catch (err) {
+            console.warn(err);
+        } finally {
+            loading = false;
+        }
+    };
 </script>
 
 <svelte:head>
@@ -55,7 +98,7 @@
         <div class="col-span-2 lg:col-span-1">
             {#if !actImage}
                 <label for="file-upload-input" class={$btnClass}>
-                    <img src="icons/camera.svg" alt="Camera" />
+                    <img src={cameraSrc} alt="Camera" />
                     <span class="ml-2">Picture</span>
                 </label>
             {:else}
@@ -107,8 +150,12 @@
     <div class="grid lg:grid-cols-3 mt-8">
         <span />
         <button class={$btnClass} on:click={submitCard}>
-            <img src="icons/add.svg" alt="Add" />
+            <img src={addSrc} alt="Add" />
             <span>Add Card</span>
         </button>
     </div>
 </div>
+
+{#if loading}
+    <AppLoading />
+{/if}
